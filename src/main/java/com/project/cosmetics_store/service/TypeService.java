@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Class for interacting with items table of database
+ * @author Anastasia Ovcharenko
+ */
 @Service
 @RequiredArgsConstructor
 public class TypeService {

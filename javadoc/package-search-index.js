@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.project.cosmetics_store"},{"l":"com.project.cosmetics_store.config"},{"l":"com.project.cosmetics_store.controllers"},{"l":"com.project.cosmetics_store.models"},{"l":"com.project.cosmetics_store.repo"},{"l":"com.project.cosmetics_store.service"}];updateSearchResults();

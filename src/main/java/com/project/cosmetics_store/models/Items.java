@@ -2,6 +2,10 @@ package com.project.cosmetics_store.models;
 
 import javax.persistence.*;
 
+/**
+ * Class for items entity
+ * @author Anastasia Ovcharenko
+ */
 @Entity
 public class Items {
     @Id

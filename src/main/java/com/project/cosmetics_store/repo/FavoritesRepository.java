@@ -6,6 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * interface for interacting with favorites table
+ * @author Vasilisa Murunova
+ */
 public interface FavoritesRepository extends JpaRepository<Favorites, Integer> {
 
     Favorites findByUserIdAndItemId(int userId, int itemId);

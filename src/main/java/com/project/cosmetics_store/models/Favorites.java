@@ -2,6 +2,10 @@ package com.project.cosmetics_store.models;
 
 import javax.persistence.*;
 
+/**
+ * Class for favorites entity
+ * @author Vasilisa Murunova
+ */
 @Entity
 @Table(name = "favs")
 public class Favorites {

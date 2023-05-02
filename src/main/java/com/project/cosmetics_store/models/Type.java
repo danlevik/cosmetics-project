@@ -2,6 +2,10 @@ package com.project.cosmetics_store.models;
 
 import javax.persistence.*;
 
+/**
+ * Class for type entity
+ * @author Anastasia Ovcharenko
+ */
 @Entity
 @Table(name = "types")
 public class Type {

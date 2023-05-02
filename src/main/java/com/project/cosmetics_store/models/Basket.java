@@ -3,6 +3,10 @@ package com.project.cosmetics_store.models;
 
 import javax.persistence.*;
 
+/**
+ * class for basket entity
+ * @author Vasilisa Murunova
+ */
 @Entity
 @Table(name = "basket")
 public class Basket {

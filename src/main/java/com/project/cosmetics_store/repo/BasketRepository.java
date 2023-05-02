@@ -6,6 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * interface for interacting with basket table
+ * @author Vasilisa Murunova
+ */
 public interface BasketRepository extends JpaRepository<Basket, Integer> {
 
     Basket findByUserIdAndItemId(int userId, int itemId);

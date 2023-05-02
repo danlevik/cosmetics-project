@@ -10,14 +10,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Class for interacting with items table of database
+ * @author Anastasia Ovcharenko
+ */
 @Service
 @RequiredArgsConstructor
-public class ClothesService {
+public class ItemsService {
 
     private ItemsRepository itemsRepository;
 
     @Autowired
-    public ClothesService(ItemsRepository itemsRepository){
+    public ItemsService(ItemsRepository itemsRepository){
         this.itemsRepository = itemsRepository;
     }
 

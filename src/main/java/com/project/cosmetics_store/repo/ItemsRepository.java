@@ -6,6 +6,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
+/**
+ * interface for interacting with items table
+ * @author Anastasia Ovcharenko
+ */
 public interface ItemsRepository extends CrudRepository<Items, Long> {
     List<Items> findAllByTypeId(int typeId);
 

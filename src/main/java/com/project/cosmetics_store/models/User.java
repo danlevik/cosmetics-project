@@ -7,6 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Class for user entity
+ * @author Natalia Tuchina
+ */
 @Entity
 public class User implements UserDetails {
     @Id

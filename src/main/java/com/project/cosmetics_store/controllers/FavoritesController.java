@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+/**
+ * Class for favorites page logic
+ * @author Natalia Tuchina
+ */
 @Controller
 @RequestMapping("/")
 public class FavoritesController {
 
     @Autowired
-    private ClothesService clothesService;
+    private ItemsService itemsService;
 
     @Autowired
     private TypeService typeService;
@@ -35,7 +39,13 @@ public class FavoritesController {
     private FavoritesService favService;
 
 
-
+    /**
+     * method for rendering favorites page
+     * @param model - holder of model attributes
+     * @param user - current user
+     * @return rendered favorites page
+     * @author Natalia Tuchina
+     */
     @GetMapping("/favorites")
     public String favorites(Model model,
                          @AuthenticationPrincipal User user){
@@ -46,11 +56,17 @@ public class FavoritesController {
         List<Favorites> adds = favService.getAddsByUserId(userId);
 
         model.addAttribute("favorites", adds);
-        model.addAttribute("clothesService", clothesService);
+        model.addAttribute("clothesService", itemsService);
 
         return "favorites";
     }
 
+    /**
+     * method for deleting item from favorites
+     * @param addId - item id
+     * @return rendered favorites page via redirect
+     * @author Natalia Tuchina
+     */
     @PostMapping("/favoritesDeleteAdd")
     public String deleteAdd(@RequestParam(value = "delButton") int addId){
         favService.deleteAddById(addId);

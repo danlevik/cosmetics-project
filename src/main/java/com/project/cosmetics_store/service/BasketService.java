@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Class for interacting with basket table of database
+ * @author Vasilisa Murunova
+ */
 @Service
 @RequiredArgsConstructor
 public class BasketService {

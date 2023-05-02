@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+/**
+ * Main Controller class for main page and interacting with items
+ * @author Anastasia Ovcharenko
+ */
 @Controller
 public class MainController {
 
@@ -20,7 +25,7 @@ public class MainController {
     private ItemsRepository itemsRepository;
 
     @Autowired
-    private ClothesService clothesService;
+    private ItemsService itemsService;
 
     @Autowired
     private TypeService typeService;
@@ -31,15 +36,21 @@ public class MainController {
     @Autowired
     private BasketService basketService;
 
-
     @Autowired
     private FavoritesService favService;
 
 
+    /**
+     * method for sending main page to client
+     * @param user - user, that sent request
+     * @param typeId - item type
+     * @param model - holder of model attributes
+     * @return rendered main page
+     * @author Anastasia Ovcharenko
+     */
     @GetMapping("/")
     public String mainPage(
             @AuthenticationPrincipal User user,
-            Authentication authentication,
             @RequestParam(name = "typeId", required = false) Integer typeId,
             Model model) {
 
@@ -50,21 +61,25 @@ public class MainController {
         model.addAttribute("types", typeService.getAllTypes());
         model.addAttribute("typeId", typeId);
         model.addAttribute("title", "Каталог");
-        Iterable<Items> clothes = itemsRepository.findAll();
-        model.addAttribute("clothes", clothes);
+        Iterable<Items> items = itemsRepository.findAll();
+        model.addAttribute("clothes", items);
 
 
         if (typeId == null) {
 //            model.addAttribute("products", products);
-            model.addAttribute("clothes", clothes);
+            model.addAttribute("clothes", items);
         }
         else{
-            model.addAttribute("clothes", clothesService.getAllItemsByTypeId(typeId));
+            model.addAttribute("clothes", itemsService.getAllItemsByTypeId(typeId));
         }
 
         return "index";
     }
 
+    /**
+     * Class for items manipulation for admins
+     * @author Daniil Levitsky
+     */
     @Controller
     public class ItemsController {
 
@@ -89,11 +104,27 @@ public class MainController {
 //            return "item-desc";
 //        }
 
+        /**
+         * method for sending page with add form to client
+         * @param model - holder of model attributes
+         * @return rendered page with form for items adding
+         * @author Daniil Levitsky
+         */
         @GetMapping("/add")
         public String itemAddForm(Model model){
             return "itemAdd";
         }
 
+        /**
+         * method to send data about new item from client form to database
+         * @param item_name - name of an item
+         * @param cover_link - link to cover image for item
+         * @param price - price of item
+         * @param typeId - type of item
+         * @param model - holder of model attributes
+         * @return rendered main page via redirect
+         * @author Daniil Levitsky
+         */
         @PostMapping("/add")
         public String itemSave(@RequestParam String item_name,
                                @RequestParam String cover_link, @RequestParam int price,
@@ -111,7 +142,12 @@ public class MainController {
 
     }
 
-
+    /**
+     * method for getting user id from user authentication
+     * @param authentication - user authentication
+     * @return user id
+     * @author Natalia Tuchina
+     */
     private int getUserId(Authentication authentication) {
         if (authentication == null)
             return 0;
@@ -119,13 +155,17 @@ public class MainController {
             return ((User)userService.loadUserByUsername(authentication.getName())).getId();
     }
 
-
+    /**
+     * method for adding chosen item to basket table in database
+     * @param authentication - user authentication
+     * @param itemId - id of added item
+     * @return rendered main page via redirect
+     * @author Daniil Levitsky
+     */
     @PostMapping("/page/{id}")
     public String addItemToBasket(
-            @RequestParam (required = false) String itemSize ,
             Authentication authentication,
-            @PathVariable(value = "id") int itemId,
-            Model model
+            @PathVariable(value = "id") int itemId
     ) {
             int userId = getUserId(authentication);
             Basket basket = basketService.getPurchaseByUserIdAndItemId(userId, itemId);
@@ -134,7 +174,6 @@ public class MainController {
                 newBasket.setUserId(userId);
                 newBasket.setItemId(itemId);
                 newBasket.setItemCount(1);
-                newBasket.setItemSize(itemSize);
                 basketService.savePurchase(newBasket);
 //                return "redirect:/page/" + itemId;
                 return "redirect:/";
@@ -148,6 +187,13 @@ public class MainController {
         }
     }
 
+    /**
+     * method for adding chosen item to favorite table in database
+     * @param authentication - user authentication
+     * @param itemId - id of added item
+     * @return rendered main page via redirect
+     * @author Daniil Levitsky
+     */
     @PostMapping("/favorites/{id}")
     public String addItemToFavs(
             Authentication authentication,

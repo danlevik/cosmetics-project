@@ -1,0 +1,6 @@
+com.project.cosmetics_store
+com.project.cosmetics_store.config
+com.project.cosmetics_store.controllers
+com.project.cosmetics_store.models
+com.project.cosmetics_store.repo
+com.project.cosmetics_store.service
