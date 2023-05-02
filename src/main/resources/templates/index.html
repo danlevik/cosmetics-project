@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Каталог</title>
+        <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <!--    <link rel="stylesheet" href="elib\src\main\resources\static\style.css">-->
+        <link th:href="@{css/style.css}" rel="stylesheet" />
+    </head>
+<body>
+<div th:insert="blocks/general.html :: header0">
+</div>
+
+
+
+<!--<div>-->
+<!--    <form th:action="@{/logout}" method="post">-->
+<!--        <input type="submit" value="Разлогиниться"/>-->
+<!--    </form>-->
+<!--</div>-->
+
+<!--<a th:href="@{/user}">Список пользователей (ADMIN only)</a><br>-->
+
+<!--<a th:href="@{/user/profile}">Профиль</a>-->
+
+<!--<a th:if="(${authority}=='[ADMIN]')" th:href="@{/add}">Добавить книгу (ADMIN only)</a>-->
+
+<!--<form th:if="(${authority}=='[ADMIN]')" th:action="@{/add}">-->
+<!--    <input type="submit" value="Добавить вещь"/>-->
+<!--</form>-->
+
+<!--<p th:text="${authority}"/>-->
+<!--<p th:if="(${authority}=='[ADMIN]')" th:text="${authority}"/>-->
+<div id="type_names">
+<p><a th:href="@{/}" class="sample">Все варианты</a></p>
+<p th:each="type : ${types}"><a th:href="@{/(typeId=${type.getId()})}" th:text="${type.getName()}" class="sample">TEXT</a></p>
+</div>
+    <div class="item_container">
+    <div th:each="el : ${clothes}" class="item_card">
+        <img th:src="${el.coverLink}" onerror="this.src='img/no-cover.gif'" height="300px" width="200px">
+        <p th:if="(${authority}=='[ADMIN]')" th:text="${el.id}"></p>
+        <p th:text="${el.itemName}"/>
+<!--        <p th:text="${el.id}"/>-->
+        <p th:text="'Цена: '+${el.price}+'р'"/>
+        <p>Выберите размер:</p>
+        <form th:method="POST" th:action="@{/page/{id}(id=${el.id})}">
+            <!--<input type="number" name="itemSize"/>-->
+            <button type="submit">Добавить в корзину</button>
+        </form>
+
+        <form th:method="POST" th:action="@{/favorites/{id}(id=${el.id})}">
+            <button type="submit">Добавить в избранное</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

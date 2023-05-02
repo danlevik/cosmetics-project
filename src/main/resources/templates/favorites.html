@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Избранное</title>
+    <link th:href="@{css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<div th:insert="blocks/general.html :: header0">
+</div>
+<!--<p class="basketlist">ВАШИ ИЗБРАННЫЕ:</p>-->
+<!--<div class="basket_container">-->
+<!--    <div th:each="favorite : ${favorites}" class="basket_card">-->
+<!--        <div class="basket_buttons">-->
+<!--            <form th:method="POST" th:action="@{/favoritesDeleteAdd}">-->
+<!--                <button name="delButton" th:value="${favorite.getId}">X</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--        <img th:src="${clothesService.getItemById(favorite.getItemId()).getCoverLink()}" onerror="this.src='img/no-cover.gif'" height="300px" width="200px">-->
+<!--        <p th:text="${clothesService.getItemById(favorite.getItemId()).getItemName()}"/>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--</div>-->
+<p class="basketlist">ВАШИ ИЗБРАННЫЕ:</p>
+<div class="favs_container">
+    <div th:each="favorite : ${favorites}" class="item_card">
+        <img th:src="${clothesService.getItemById(favorite.getItemId()).getCoverLink()}" onerror="this.src='img/no-cover.gif'" height="300px" width="200px">
+        <p th:text="${clothesService.getItemById(favorite.getItemId()).getItemName()}"/>
+        <form th:method="POST" th:action="@{/favoritesDeleteAdd}">
+            <button name="delButton" th:value="${favorite.getId}">X</button>
+        </form>
+        <p th:text="'Цена: '+${clothesService.getItemById(favorite.getItemId()).price}+'р'"/>
+        <p>Выберите размер:</p>
+        <form th:method="POST" th:action="@{/page/{id}(id=${clothesService.getItemById(favorite.getItemId()).id})}">
+            <button type="submit">Добавить в корзину</button>
+        </form>
+    </div>
+
+</div>
+
+
+</body>
+</html>
