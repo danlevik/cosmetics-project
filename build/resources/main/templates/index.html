@@ -44,7 +44,6 @@
         <p th:text="${el.itemName}"/>
 <!--        <p th:text="${el.id}"/>-->
         <p th:text="'Цена: '+${el.price}+'р'"/>
-        <p>Выберите размер:</p>
         <form th:method="POST" th:action="@{/page/{id}(id=${el.id})}">
             <!--<input type="number" name="itemSize"/>-->
             <button type="submit">Добавить в корзину</button>

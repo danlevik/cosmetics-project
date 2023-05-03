@@ -25,11 +25,21 @@ public class Items {
 //        this.shopLink = shopLink;
 //    }
 
-    private String description;
 
+
+    /**
+     * Empty constructor of Items
+     */
     public Items() {
     }
 
+    /**
+     * constructor for item
+     * @param itemName - name of item
+     * @param coverLink - link for cover image
+     * @param price - price of item
+     * @param typeId - type of item
+     */
     public Items(String itemName, String coverLink, int price, int typeId) {
         this.coverLink = coverLink;
         this.itemName = itemName;
@@ -48,42 +58,75 @@ public class Items {
 //    )
 //    private Set<User> subscribers = new HashSet<>();
 
+    /**
+     * getter method for id of item entity
+     * @return id of item entity
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * setter method for id of item entity
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * getter method for price of item
+     * @return price of item
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * getter method for id of type
+     * @return id of type
+     */
     public int getTypeId() {
         return typeId;
     }
 
+    /**
+     * setter method for price of item
+     */
     public void setPrice(int price) {
         this.price = price;
     }
 
+    /**
+     * setter method for id of type
+     */
     public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
 
+    /**
+     * getter method for cover link
+     * @return cover link
+     */
     public String getCoverLink() {
         return coverLink;
     }
-
+    /**
+     * setter method for cover link
+     */
     public void setCoverLink(String coverLink) {
         this.coverLink = coverLink;
     }
 
+    /**
+     * getter method for item name
+     * @return item name
+     */
     public String getItemName() {
         return itemName;
     }
-
+    /**
+     * setter method for item name
+     */
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }

@@ -19,6 +19,9 @@ public class User implements UserDetails {
     private String username, password;
     private boolean active;
 
+    /**
+     * Empty constructor of User
+     */
     public User() {
     }
 
@@ -31,15 +34,24 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
 
-
+    /**
+     * getter method for id of user
+     * @return id of user
+     */
     public int getId() {
         return id;
     }
-
+    /**
+     * setter method for id of user
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * getter method for username of user
+     * @return username of user
+     */
     public String getUsername() {
         return username;
     }
@@ -64,6 +76,9 @@ public class User implements UserDetails {
         return isActive();
     }
 
+    /**
+     * setter method for username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
@@ -73,26 +88,45 @@ public class User implements UserDetails {
         return getRoles();
     }
 
+    /**
+     * getter method for password
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
-
+    /**
+     * setter method for password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * getter method for active property of user
+     * @return active property
+     */
     public boolean isActive() {
         return active;
     }
-
+    /**
+     * setter method for active property of user
+     */
     public void setActive(boolean active) {
         this.active = active;
     }
 
+    /**
+     * getter method for roles of user
+     * @return set of user roles
+     */
     public Set<Role> getRoles() {
         return roles;
     }
 
+    /**
+     * setter method for roles of user
+     */
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
